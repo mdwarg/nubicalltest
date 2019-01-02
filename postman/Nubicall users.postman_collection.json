@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "0c507999-1cf0-40e9-a2a7-f46e49ffb1d4",
+		"name": "Nubicall users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"Nubicall\",\n\t\"firstName\": \"Nubi\",\n\t\"lastName\": \"Call\",\n\t\"email\": \"nubicall@example.com\",\n\t\"password\": \"P@ssw0rd\",\n\t\"phone\": \"1111-2222\",\n\t\"status\": \"Active\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find user by username",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/Nubicall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"Nubicall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify user",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"Nubicall\",\n\t\"firstName\": \"Nubi\",\n\t\"lastName\": \"Call\",\n\t\"email\": \"nubicall@example.com\",\n\t\"password\": \"P@ssw0rd\",\n\t\"phone\": \"5555-5555\",\n\t\"status\": \"Active\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/Nubicall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"Nubicall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/Nubicall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"Nubicall"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
