@@ -1,4 +1,4 @@
-package com.nubicalltest.users;
+package com.nubicalltest.users.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
