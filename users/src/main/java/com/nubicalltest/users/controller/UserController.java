@@ -1,15 +1,9 @@
 package com.nubicalltest.users.controller;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specifications;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nubicalltest.users.exception.ResourceNotFoundException;
@@ -25,26 +21,25 @@ import com.nubicalltest.users.repository.UserRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Scope;
 
 @RestController
-@RequestMapping("/api")
-@Api(value="User API" )
+@RequestMapping("/users")
+@Api(value="User API", tags= {"users"} )
 public class UserController {
 
 	@Autowired
 	UserRepository userRepository;
-
+	
 	/**
 	 * Create new user
 	 * @param user
 	 * @return
 	 */
-	@PostMapping("/users")
+	@PostMapping("/")
 	@ApiOperation(value = "Create New User")
-	public ResponseEntity<String> createUser(@Valid @RequestBody User user) {
+	@ResponseStatus(HttpStatus.CREATED)
+	public void createUser(@Valid @RequestBody User user) {
 		userRepository.save(user);
-		return new ResponseEntity<String>("User Created", HttpStatus.CREATED);
 	}
 
 	/**
@@ -52,8 +47,9 @@ public class UserController {
 	 * @param username
 	 * @return found user
 	 */
-	@GetMapping("/users/{username}")
-	@ApiOperation(value = "Create New User", response = User.class)
+	@GetMapping("/{username}")
+	@ApiOperation(value = "Get User")
+	@ResponseBody
 	public User findUserByUsername(@PathVariable(value = "username") String username) {
 		return userRepository.findByUsername(username)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
@@ -65,8 +61,10 @@ public class UserController {
 	 * @param modifiedUser
 	 * @return updatedUser
 	 */
-	@PutMapping("/users/{username}")
-	public User modifyUser(@PathVariable(value = "username") String username, @Valid @RequestBody User modifiedUser) {
+	@PutMapping("/{username}")
+	@ApiOperation(value = "Modify Complete User")
+	@ResponseStatus(HttpStatus.OK)
+	public void modifyUser(@PathVariable(value = "username") String username, @Valid @RequestBody User modifiedUser) {
 		User user = userRepository.findByUsername(username)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
 		
@@ -78,16 +76,16 @@ public class UserController {
 		user.setPhone(modifiedUser.getPhone());
 		user.setStatus(modifiedUser.getStatus());
 		
-		return userRepository.save(user);
+		userRepository.save(user);
 	}
 
-	@DeleteMapping("/users/{username}")
-	public ResponseEntity<?> deleteUser(@PathVariable(value = "username") String username) {
+	@DeleteMapping("/{username}")
+	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(value = "Delete User")
+	public void deleteUser(@PathVariable(value = "username") String username) {
 		User user = userRepository.findByUsername(username)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
 		
 		userRepository.delete(user);
-		
-		return ResponseEntity.ok().build();
 	}
 }

@@ -1,20 +1,11 @@
 package com.nubicalltest.users.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.nubicalltest.users.constraint.ValidPassword;
-import com.nubicalltest.users.model.audit.DateAudit;
 
 @Entity
 @Table(uniqueConstraints = {
@@ -25,7 +16,7 @@ import com.nubicalltest.users.model.audit.DateAudit;
             "email"
         })
 })
-public class User extends DateAudit {
+public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +38,7 @@ public class User extends DateAudit {
 	private String email;
 	
 	@NotBlank
-	@Size(max = 100)
+	@Size(min = 8, max = 30)
 	private String password;
 
 	@Size(max = 20)

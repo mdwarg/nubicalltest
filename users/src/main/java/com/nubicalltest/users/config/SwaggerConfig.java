@@ -6,6 +6,7 @@ import java.util.Collections;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.AuthorizationCodeGrantBuilder;
 import springfox.documentation.builders.OAuthBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -40,12 +41,13 @@ public class SwaggerConfig {
 	}
 	
 	private ApiInfo apiInfo() {
-	    return new ApiInfo(
-	      "Nubicall users REST API", 
-	      "This is a test for Nubicall.", 
-	      "API TOS", 
-	      "Terms of service", 
-	      new Contact("Marcelo Wieja", "https://linkedin.com/in/marcelo-david-wieja/", "marcelo.wieja@gmail.com"), 
-	      "License of API", "API license URL", Collections.emptyList());
+	    return new ApiInfoBuilder()
+	    		.title("User API")
+	    		.description("User API specification")
+	    		.version("1.0.0")
+	    		.license("MIT")
+	    		.licenseUrl("https://opensource.org/licenses/MIT")
+	    		.contact(new Contact("Marcelo Wieja", "https://linkedin.com/in/marcelo-david-wieja/", "marcelo.wieja@gmail.com"))
+	    		.build();
 	}
 }
