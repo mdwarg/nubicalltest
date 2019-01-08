@@ -7,6 +7,20 @@
 	"item": [
 		{
 			"name": "Create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8670d90e-4166-41f3-b9e0-ceeb9e297fa5",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -22,15 +36,13 @@
 					"raw": "{\n\t\"username\": \"Nubicall\",\n\t\"firstName\": \"Nubi\",\n\t\"lastName\": \"Call\",\n\t\"email\": \"nubicall@example.com\",\n\t\"password\": \"P@ssw0rd\",\n\t\"phone\": \"1111-2222\",\n\t\"status\": \"Active\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/users",
-					"protocol": "http",
+					"raw": "{{url}}/users/",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "8080",
 					"path": [
-						"api",
-						"users"
+						"users",
+						""
 					]
 				}
 			},
@@ -38,6 +50,20 @@
 		},
 		{
 			"name": "Find user by username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "78c07708-b07a-430d-ad19-231023a43c39",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -46,14 +72,11 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/users/Nubicall",
-					"protocol": "http",
+					"raw": "{{url}}/users/Nubicall",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "8080",
 					"path": [
-						"api",
 						"users",
 						"Nubicall"
 					]
@@ -63,6 +86,20 @@
 		},
 		{
 			"name": "Modify user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15f52cd3-bb3a-4741-8d0e-50088cad3dd5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -78,14 +115,11 @@
 					"raw": "{\n\t\"username\": \"Nubicall\",\n\t\"firstName\": \"Nubi\",\n\t\"lastName\": \"Call\",\n\t\"email\": \"nubicall@example.com\",\n\t\"password\": \"P@ssw0rd\",\n\t\"phone\": \"5555-5555\",\n\t\"status\": \"Active\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/users/Nubicall",
-					"protocol": "http",
+					"raw": "{{url}}/users/Nubicall",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "8080",
 					"path": [
-						"api",
 						"users",
 						"Nubicall"
 					]
@@ -95,6 +129,20 @@
 		},
 		{
 			"name": "Delete user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6c08848a-221c-4c9d-9e3a-bc392cdf41f8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -103,14 +151,11 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/users/Nubicall",
-					"protocol": "http",
+					"raw": "{{url}}/users/Nubicall",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "8080",
 					"path": [
-						"api",
 						"users",
 						"Nubicall"
 					]
