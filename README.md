@@ -65,13 +65,18 @@ docker-compose up
 ´´´
 De esta forma deberiamos tener un contenedor con nuestra base de datos en MySQL y otro con la aplicación de Spring Boot en Java 8
 
+Una vez iniciada la aplicacion podemos encontrar documentacion de la API en la siguiente URL:
+´´´
+http://localhost:8080/swagger-ui.html
+´´´
+
 ## Pruebas externas con Postman ⚙️
 
 _Para realizar pruebas con [Postman](https://www.getpostman.com/) se incluye una colección de invocaciones a la API con el fin de facilitar las pruebas_
 Este archivo se encuentra en la siguiente ubucacion:
 ´´´
 ./postman/Nubicall users.postman_collection.json
-```
+´´´
 
 ## Construido con 🛠️
 
@@ -83,9 +88,5 @@ Este archivo se encuentra en la siguiente ubucacion:
 ## Autores ✒️
 
 * **Marcelo Wieja** - [mdwarg](https://github.com/mdwarg)
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
 
 
