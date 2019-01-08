@@ -46,7 +46,7 @@ mvn jacoco:report
 ```
 Luego de que finaliza la generación del reporte podemos encontrar una version del mismo en la siguiente ruta:
 ```
-./users/target/site/index.html
+./users/target/site/jacoco/index.html
 ```
 
 ## Deployment 📦
@@ -67,7 +67,27 @@ De esta forma deberiamos tener un contenedor con nuestra base de datos en MySQL 
 
 Una vez iniciada la aplicacion podemos encontrar documentacion de la API en la siguiente URL:
 ```
-http://localhost:8080/swagger-ui.html
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+```
+
+## Archivos de configuración ⚙️
+
+_Se pueden encontrar los archivos de configuración en las siguientes rutas_
+
+
+Spring:
+```
+./users/src/main/resources/application.yml
+```
+
+Docker compose:
+```
+./users/docker-compose.yml
+```
+
+Maven:
+```
+./users/pom.xml
 ```
 
 ## Pruebas externas con Postman ⚙️
