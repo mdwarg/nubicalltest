@@ -29,7 +29,7 @@ _Para instalar la aplicación necesitas tener instalado:_
 
 ## Ejecutando las pruebas ⚙️
 
-_Se pueden ejecutar las pruebas con maven con el siguiente comando_
+_Se pueden ejecutar las pruebas usando maven con el siguiente comando_
 
 Dentro del directorio "./users", que es donde se encuentra el código del proyecto ejecutamos:
 ```
