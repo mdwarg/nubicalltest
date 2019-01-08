@@ -72,8 +72,9 @@ http://localhost:8080/swagger-ui.html
 
 ## Pruebas externas con Postman ⚙️
 
-_Para realizar pruebas con Postman se incluye una colección de invocaciones a la API_
-Este archivo se encuentra en la siguiente ubucacion:
+_Para realizar pruebas con [Postman](https://www.getpostman.com/) se incluye una colección de invocaciones a la API_
+
+Este archivo se encuentra en la siguiente ubicación:
 ```
 ./postman/Nubicall users.postman_collection.json
 ```
