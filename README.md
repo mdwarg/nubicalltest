@@ -78,12 +78,11 @@ Los archivos log se generan en la siguiete ruta (configurable desde application.
 ```
 /var/tmp/nubicall.users.log
 ```
-
 Como la aplicación se ejecuta dentro de un contenedor docker precisamos enviar al mismo los comandos que queremos ejecutar. Lo hacemos de la siguiente forma:
 ```
 docker exec -i {nombre del contenedor} {comando}
 ```
-Para obtener el nombre del contenedor ejecutamos el sigueiente comando:
+Para obtener el nombre del contenedor ejecutamos el siguiente comando:
 ```
 docker ps
 ```
