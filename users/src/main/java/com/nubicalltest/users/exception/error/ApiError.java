@@ -6,6 +6,9 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 
+import lombok.Data;
+
+@Data
 public class ApiError {
 
 	private HttpStatus status;

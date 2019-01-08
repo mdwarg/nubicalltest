@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,8 @@ import com.nubicalltest.users.exception.error.ApiError;
 @ControllerAdvice
 public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
 
+	private static final Logger log = LoggerFactory.getLogger(CustomRestExceptionHandler.class);
+
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -37,6 +41,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
 		}
 
 		ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
+		log.warn(apiError.toString());
 		return handleExceptionInternal(ex, apiError, headers, apiError.getStatus(), request);
 	}
 
@@ -46,6 +51,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
 		String error = ex.getParameterName() + " parameter is missing";
 
 		ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
+		log.warn(apiError.toString());
 		return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
 	}
 
@@ -58,6 +64,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
 		}
 
 		ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
+		log.warn(apiError.toString());
 		return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
 	}
 
@@ -67,12 +74,14 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
 		String error = ex.getName() + " should be of type " + ex.getRequiredType().getName();
 
 		ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
+		log.warn(apiError.toString());
 		return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
 	}
 
 	@ExceptionHandler({ ResourceNotFoundException.class })
 	public ResponseEntity<Object> handleResourceNotFound(ResourceNotFoundException ex, WebRequest request) {
 		ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, ex.getLocalizedMessage(), ex.getMessage());
+		log.warn(apiError.toString());
 		return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
 	}
 }

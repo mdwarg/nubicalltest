@@ -70,6 +70,29 @@ Una vez iniciada la aplicacion podemos encontrar documentacion de la API en la s
 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 ```
 
+## Archivos log ⚙️
+
+_Se pueden consultar los archivos log generados por la aplicación_
+
+Los archivos log se generan en la siguiete ruta (configurable desde application.yml):
+```
+/var/tmp/nubicall.users.log
+```
+
+Como la aplicación se ejecuta dentro de un contenedor docker precisamos enviar al mismo los comandos que queremos ejecutar. Lo hacemos de la siguiente forma:
+```
+docker exec -i {nombre del contenedor} {comando}
+```
+Para obtener el nombre del contenedor ejecutamos el sigueiente comando:
+```
+docker ps
+```
+
+Ejemplo para ver el log con el comando tail:
+```
+docker exec -i users_users-nubicall_1 tail -f /var/tmp/nubicall.users.log
+```
+
 ## Archivos de configuración ⚙️
 
 _Se pueden encontrar los archivos de configuración en las siguientes rutas_

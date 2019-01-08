@@ -2,51 +2,55 @@ package com.nubicalltest.users.model;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import lombok.Data;
+
 @Entity
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {
-            "username"
-        }),
-        @UniqueConstraint(columnNames = {
-            "email"
-        })
-})
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
+		@UniqueConstraint(columnNames = { "email" }) })
+@Data
 public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	
+
 	@NotBlank
 	@Size(max = 20)
 	private String username;
 
 	@Size(max = 30)
 	private String firstName;
-	
+
 	@Size(max = 30)
 	private String lastName;
-	
+
 	@NotBlank
 	@Size(max = 40)
 	@Email
 	private String email;
-	
+
 	@NotBlank
 	@Size(min = 8, max = 30)
 	private String password;
 
 	@Size(max = 20)
 	private String phone;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Status status;
-	
+
 	public Long getId() {
 		return Id;
 	}
