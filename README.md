@@ -32,9 +32,9 @@ _Para instalar la aplicación necesitas tener instalado:_
 _Se pueden ejecutar las pruebas con maven con el siguiente comando_
 
 Dentro del directorio "./users", que es donde se encuentra el código del proyecto ejecutamos:
-´´´
+```
 mvn test
-´´´
+```
 
 ### Coverage de las pruebas 🔩
 
@@ -45,9 +45,9 @@ Dentro del directorio "./users", que es donde se encuentra el código del proyec
 mvn jacoco:report
 ```
 Luego de que finaliza la generación del reporte podemos encontrar una version del mismo en la siguiente ruta:
-´´´
+```
 ./users/target/site/index.html
-´´´
+```
 
 ## Deployment 📦
 
@@ -60,23 +60,23 @@ mvn clean package docker:build
 _Luego con docker compose podemos ejecutar los servicios necesarios para iniciar la aplicación_
 
 Una vez generada la imagen del contenedor ejecutamos el siguiente comando:
-´´´
+```
 docker-compose up
-´´´
+```
 De esta forma deberiamos tener un contenedor con nuestra base de datos en MySQL y otro con la aplicación de Spring Boot en Java 8
 
 Una vez iniciada la aplicacion podemos encontrar documentacion de la API en la siguiente URL:
-´´´
+```
 http://localhost:8080/swagger-ui.html
-´´´
+```
 
 ## Pruebas externas con Postman ⚙️
 
 _Para realizar pruebas con [Postman](https://www.getpostman.com/) se incluye una colección de invocaciones a la API con el fin de facilitar las pruebas_
 Este archivo se encuentra en la siguiente ubucacion:
-´´´
+```
 ./postman/Nubicall users.postman_collection.json
-´´´
+```
 
 ## Construido con 🛠️
 
