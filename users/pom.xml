@@ -16,9 +16,11 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+	    <docker.baseDir>src/main/docker</docker.baseDir>
 	</properties>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -122,8 +124,30 @@
 			        </execution>
 			    </executions>
 			</plugin>
+			<plugin>
+			    <groupId>com.spotify</groupId>
+			    <artifactId>docker-maven-plugin</artifactId>
+			    <version>0.4.11</version>
+			    <configuration>
+			        <imageName>mdwarg/${project.artifactId}</imageName>
+			        <dockerDirectory>${docker.baseDir}</dockerDirectory>
+			        <resources>
+			            <resource>
+			                <targetPath>/</targetPath>
+			                <directory>${project.build.directory}</directory>
+			                <include>${project.build.finalName}.jar</include>
+			            </resource>
+			            <resource>
+			                <targetPath>/</targetPath>
+			                <directory>${docker.baseDir}</directory>
+			                <include>wrapper.sh</include>
+			            </resource>
+			        </resources>
+			    </configuration>
+			</plugin>
 		</plugins>
-		
+
+		<finalName>${project.artifactId}</finalName>		
 	</build>
 
 </project>
