@@ -96,6 +96,10 @@ docker exec -i users_users-nubicall_1 tail -f /var/tmp/nubicall.users.log
 
 _Se pueden encontrar los archivos de configuración en las siguientes rutas_
 
+Aplicación:
+```
+./users/src/main/resources/config.properties
+```
 
 Spring:
 ```
