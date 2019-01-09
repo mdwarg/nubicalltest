@@ -1,5 +1,7 @@
 package com.nubicalltest.users.fixture;
 
+import org.json.JSONObject;
+
 import com.nubicalltest.users.model.Status;
 import com.nubicalltest.users.model.User;
 
@@ -14,6 +16,18 @@ public class UserFixture {
 		user.setPhone("1111-2222");
 		user.setStatus(Status.Active);
 		return user;
+	}
+
+	public static JSONObject jsonUser() throws Exception {
+		JSONObject jsonUser = new JSONObject();
+		jsonUser.put("username", "Nubicall");
+		jsonUser.put("firstName", "Nubi");
+		jsonUser.put("lastName", "Call");
+		jsonUser.put("email", "nubicall@example.com");
+		jsonUser.put("password", "P@ssw0rd");
+		jsonUser.put("phone", "1111-2222");
+		jsonUser.put("status", "Active");
+		return jsonUser;
 	}
 
 }

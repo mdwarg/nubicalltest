@@ -1,5 +1,6 @@
 package com.nubicalltest.users.exception.error;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -9,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import lombok.Data;
 
 @Data
-public class ApiError {
+public class ApiError implements Serializable {
 
 	private HttpStatus status;
 
