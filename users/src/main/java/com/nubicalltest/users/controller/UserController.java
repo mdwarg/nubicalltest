@@ -6,13 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +37,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PostMapping("/")
+	@RequestMapping(value = "/", produces = { "application/json", "application/xml" }, method = RequestMethod.POST)
 	@ApiOperation(value = "Create New User")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createUser(@Valid @RequestBody User user) {
@@ -54,7 +51,8 @@ public class UserController {
 	 * @param username
 	 * @return found user
 	 */
-	@GetMapping("/{username}")
+	@RequestMapping(value = "/{username}", produces = { "application/json",
+			"application/xml" }, method = RequestMethod.GET)
 	@ApiOperation(value = "Get User")
 	@ResponseBody
 	public User findUserByUsername(@PathVariable(value = "username") String username) {
@@ -70,7 +68,8 @@ public class UserController {
 	 * @param modifiedUser
 	 * @return updatedUser
 	 */
-	@PutMapping("/{username}")
+	@RequestMapping(value = "/{username}", produces = { "application/json",
+			"application/xml" }, method = RequestMethod.PUT)
 	@ApiOperation(value = "Modify Complete User")
 	@ResponseStatus(HttpStatus.OK)
 	public void modifyUser(@PathVariable(value = "username") String username, @Valid @RequestBody User modifiedUser) {
@@ -89,7 +88,8 @@ public class UserController {
 		userRepository.save(user);
 	}
 
-	@DeleteMapping("/{username}")
+	@RequestMapping(value = "/{username}", produces = { "application/json",
+			"application/xml" }, method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
 	@ApiOperation(value = "Delete User")
 	public void deleteUser(@PathVariable(value = "username") String username) {

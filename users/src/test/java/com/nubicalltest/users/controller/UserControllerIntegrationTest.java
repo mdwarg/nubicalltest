@@ -192,7 +192,7 @@ public class UserControllerIntegrationTest {
 	}
 
 	@Test
-	public void deleteNonExixtentUser() throws Exception {
+	public void deleteNonExistentUser() throws Exception {
 		String username = RandomStringUtils.randomAlphabetic(8);
 
 		mvc.perform(MockMvcRequestBuilders.delete("/users/" + username).contentType(MediaType.APPLICATION_JSON)
@@ -212,4 +212,5 @@ public class UserControllerIntegrationTest {
 
 		verify(userRepository, times(0)).delete(any(User.class));
 	}
+
 }
