@@ -7,9 +7,9 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 
-import lombok.Data;
+import lombok.ToString;
 
-@Data
+@ToString
 public class ApiError implements Serializable {
 
 	private HttpStatus status;

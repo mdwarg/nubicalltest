@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Optional;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.hibernate.exception.ConstraintViolationException;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,6 +65,17 @@ public class UserControllerIntegrationTest {
 		mvc.perform(MockMvcRequestBuilders.post("/users/").contentType(MediaType.APPLICATION_JSON)
 				.header(principalRequestHeader, principalRequestValue).content(UserFixture.jsonUser().toString()))
 				.andExpect(status().isCreated());
+
+		verify(userRepository, times(1)).save(any(User.class));
+	}
+
+	@Test
+	public void createDuplicateUser() throws Exception {
+		when(userRepository.save(any(User.class))).thenThrow(ConstraintViolationException.class);
+
+		mvc.perform(MockMvcRequestBuilders.post("/users/").contentType(MediaType.APPLICATION_JSON)
+				.header(principalRequestHeader, principalRequestValue).content(UserFixture.jsonUser().toString()))
+				.andExpect(status().isBadRequest());
 
 		verify(userRepository, times(1)).save(any(User.class));
 	}
