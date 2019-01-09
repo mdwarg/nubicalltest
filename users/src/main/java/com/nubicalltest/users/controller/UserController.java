@@ -58,7 +58,7 @@ public class UserController {
 	@ApiOperation(value = "Get User")
 	@ResponseBody
 	public User findUserByUsername(@PathVariable(value = "username") String username) {
-		log.info("fin by username: " + username);
+		log.info("Find by username: " + username);
 		return userRepository.findByUsername(username)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
 	}
